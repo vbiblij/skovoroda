@@ -42,7 +42,8 @@ body::before {
 
 /* --- Page-specific backgrounds --- */
 /* Вам потрібно знайти зображення та зберегти їх у папку assets */
-.page-index { background-image: url('../assets/background-main.jpg'); } /* Наприклад, портрет Сковороди */
+.page-index { background-image: url('../assets/background-main.jpg');     background-size: contain;
+    background-repeat: no-repeat;} /* Наприклад, портрет Сковороди */
 .page-srodna-pratsia { background-image: url('../assets/background-work.jpg'); } /* Наприклад, побутова сцена, стіл з книгами */
 .page-zerna { background-image: url('../assets/background-nature.jpg'); } /* Наприклад, поле, природа */
 .page-torba { background-image: url('../assets/background-road.jpg'); } /* Наприклад, дорога, що веде в далечінь */
