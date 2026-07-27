@@ -1,10 +1,14 @@
 :root {
     --night-sky: #1c2522; /* Deep dark green/blue */
-    --linen: #e8e4d8; /* Off-white, like linen */
+    --light-text: #e8e4d8; /* Off-white, like linen, for main text */
     --moss: #94998c; /* Muted green */
     --clay: #a67b5b; /* Earthy brown/clay */
     --font-main: 'Montserrat', sans-serif;
     --font-accent: 'Lora', serif;
+
+    /* Derived variables for consistency */
+    --linen: var(--light-text); /* Alias for backward compatibility if needed */
+    --clay-transparent: rgba(166, 123, 91, 0.5); /* Clay color with 50% opacity */
 }
 
 * {
@@ -15,7 +19,7 @@
 
 body {
     background-color: var(--night-sky);
-    color: var(--linen);
+    color: var(--light-text);
     font-family: var(--font-main);
     display: flex;
     flex-direction: column;
@@ -61,11 +65,11 @@ nav {
 }
 
 nav a {
-    color: var(--moss);
+    color: var(--light-text);
     text-decoration: none;
     font-size: 0.9rem;
     padding: 0.5rem;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 nav a:hover, nav a.active {
@@ -95,12 +99,12 @@ main {
 #mirror-question {
     font-weight: 300;
     font-size: 2rem;
-    color: var(--moss);
+    color: var(--light-text);
     transition: color 0.5s;
 }
 
 #mirror:hover #mirror-question {
-    color: var(--linen);
+    color: var(--light-text);
 }
 
 /* Quote styles */
@@ -118,7 +122,7 @@ main {
     font-size: 1.5rem;
     font-style: italic;
     line-height: 1.6;
-    color: var(--linen);
+    color: var(--light-text);
     opacity: 0;
     transform: scale(0.95) translateZ(-50px);
     transition: opacity 2s ease-in-out, transform 2s ease-in-out;
@@ -146,13 +150,13 @@ main {
 .page-title {
     font-size: 2.5rem;
     font-weight: 400;
-    color: var(--linen);
+    color: var(--light-text);
     margin-bottom: 1rem;
 }
 
 .page-intro {
     font-size: 1rem;
-    color: var(--moss);
+    color: var(--light-text);
     margin-bottom: 3rem;
     max-width: 600px;
     margin-left: auto;
@@ -168,7 +172,7 @@ main {
     display: block;
     margin-bottom: 0.75rem;
     font-size: 1.1rem;
-    color: var(--linen);
+    color: var(--light-text);
 }
 
 .reflection-input {
@@ -179,13 +183,13 @@ main {
     padding: 0.5rem;
     font-family: var(--font-main);
     font-size: 1.2rem;
-    color: var(--linen);
+    color: var(--light-text);
     outline: none;
     transition: border-color 0.3s ease;
 }
 
 .reflection-input:focus {
-    border-bottom-color: var(--linen);
+    border-bottom-color: var(--light-text);
 }
 
 .reflection-button {
@@ -220,20 +224,20 @@ main {
     font-family: var(--font-accent);
     font-style: italic;
     font-size: 1.8rem;
-    color: var(--linen);
+    color: var(--light-text);
     margin-bottom: 2rem;
 }
 
 #result-content p {
     margin-bottom: 1.5rem;
     line-height: 1.7;
-    color: var(--linen);
+    color: var(--light-text);
     text-align: left;
 }
 
 #result-content strong {
     font-weight: 600;
-    color: var(--linen); /* Making fable titles stand out a bit more */
+    color: var(--light-text); /* Making fable titles stand out a bit more */
 }
 
 /* General utility classes */
