@@ -143,7 +143,6 @@ main {
 .reflection-container {
     padding: 6rem 2rem 2rem; /* Padding top to be below the fixed header */
     width: 100%;
-    max-width: 800px;
     overflow-y: auto;
 }
 
