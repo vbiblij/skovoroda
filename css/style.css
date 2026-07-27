@@ -1,0 +1,227 @@
+:root {
+    --night-sky: #1c2522; /* Deep dark green/blue */
+    --linen: #e8e4d8; /* Off-white, like linen */
+    --moss: #94998c; /* Muted green */
+    --clay: #a67b5b; /* Earthy brown/clay */
+    --font-main: 'Montserrat', sans-serif;
+    --font-accent: 'Lora', serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--night-sky);
+    color: var(--linen);
+    font-family: var(--font-main);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden; /* Prevents scrollbars during animations */
+}
+
+/* Header and Navigation */
+#main-header {
+    width: 100%;
+    padding: 2rem;
+    position: fixed; /* Keep nav visible */
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+nav a {
+    color: var(--moss);
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+nav a:hover, nav a.active {
+    color: var(--linen);
+}
+
+/* Main Content Area */
+main {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+/* Mirror Page Specifics */
+.mirror-container {
+    perspective: 1000px;
+}
+
+#mirror {
+    cursor: pointer;
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+#mirror-question {
+    font-weight: 300;
+    font-size: 2rem;
+    color: var(--moss);
+    transition: color 0.5s;
+}
+
+#mirror:hover #mirror-question {
+    color: var(--linen);
+}
+
+/* Quote styles */
+.quote-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 600px;
+}
+
+.quote-text {
+    font-family: var(--font-accent);
+    font-size: 1.5rem;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--linen);
+    opacity: 0;
+    transform: scale(0.95) translateZ(-50px);
+    transition: opacity 2s ease-in-out, transform 2s ease-in-out;
+}
+
+.quote-text.visible {
+    opacity: 1;
+    transform: scale(1) translateZ(0);
+}
+
+/* Fade out effect for the question */
+.fade-out {
+    opacity: 0 !important;
+    transform: scale(1.1);
+}
+
+/* Reflection Page Styles */
+.reflection-container {
+    padding: 6rem 2rem 2rem; /* Padding top to be below the fixed header */
+    width: 100%;
+    max-width: 800px;
+    overflow-y: auto;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: var(--linen);
+    margin-bottom: 1rem;
+}
+
+.page-intro {
+    font-size: 1rem;
+    color: var(--moss);
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.question-block {
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.question-block label {
+    display: block;
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+    color: var(--linen);
+}
+
+.reflection-input {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid var(--moss);
+    padding: 0.5rem;
+    font-family: var(--font-main);
+    font-size: 1.2rem;
+    color: var(--linen);
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.reflection-input:focus {
+    border-bottom-color: var(--linen);
+}
+
+.reflection-button {
+    display: inline-block;
+    background-color: transparent;
+    border: 1px solid var(--moss);
+    color: var(--moss);
+    padding: 0.8rem 1.5rem;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 2rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.reflection-button:hover {
+    background-color: var(--moss);
+    color: var(--night-sky);
+}
+
+#result-section {
+    text-align: center;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+#result-section.hidden {
+    display: none;
+}
+
+#result-title {
+    font-family: var(--font-accent);
+    font-style: italic;
+    font-size: 1.8rem;
+    color: var(--linen);
+    margin-bottom: 2rem;
+}
+
+#result-content p {
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+    color: var(--linen);
+    text-align: left;
+}
+
+#result-content strong {
+    font-weight: 600;
+    color: var(--linen); /* Making fable titles stand out a bit more */
+}
+
+/* General utility classes */
+.hidden {
+    display: none;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+

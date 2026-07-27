@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сродна праця — Сковорода: Сад думок</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Lora:ital@1&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header id="main-header"></header>
+
+    <main class="reflection-container">
+        <div id="questions-section">
+            <h1 class="page-title">Знайди сродну працю</h1>
+            <p class="page-intro">Дай відповідь на п'ять питань, щоб зазирнути в себе. Відповіді не зберігаються, вони — лише для тебе.</p>
+            <form id="reflection-form">
+                <div class="question-block">
+                    <label for="q1">Що приносить тобі радість, навіть якщо за це не платять гроші?</label>
+                    <input type="text" id="q1" name="q1" class="reflection-input">
+                </div>
+                <div class="question-block">
+                    <label for="q2">Про що ти мріяв у дитинстві, перш ніж світ сказав тобі, ким бути?</label>
+                    <input type="text" id="q2" name="q2" class="reflection-input">
+                </div>
+                <div class="question-block">
+                    <label for="q3">Якби ти мав усе необхідне для життя, чому б присвятив свій час?</label>
+                    <input type="text" id="q3" name="q3" class="reflection-input">
+                </div>
+                <div class="question-block">
+                    <label for="q4">Яку діяльність ти знаходиш настільки захоплюючою, що втрачаєш лік часу?</label>
+                    <input type="text"id="q4" name="q4" class="reflection-input">
+                </div>
+                <div class="question-block">
+                    <label for="q5">Який слід ти хотів би залишити по собі?</label>
+                    <input type="text" id="q5" name="q5" class="reflection-input">
+                </div>
+                <button type="submit" class="reflection-button">Отримати напутнє слово</button>
+            </form>
+        </div>
+
+        <div id="result-section" class="hidden">
+            <h2 id="result-title"></h2>
+            <div id="result-content"></div>
+            <a href="srodna-pratsia.html" class="reflection-button">Пройти ще раз</a>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script src="js/reflection.js"></script>
+</body>
+</html>

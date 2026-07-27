@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зерна — Сковорода: Сад думок</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Lora:ital@1&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header id="main-header"></header>
+
+    <main class="grains-container">
+        <div class="audio-card">
+            <p id="grain-text" class="grain-quote"></p>
+            <!-- 
+                USER NOTE:
+                The audio file below ('assets/aphorism-1.mp3') is a placeholder. 
+                You should replace this with a real audio recording of the aphorism.
+                The JavaScript in 'js/grains.js' is set up to handle a playlist of these recordings.
+                I have also included a placeholder for ambient background sound ('assets/forest-ambience.mp3'),
+                which you can replace as well.
+            -->
+            <audio id="grain-audio" controls>
+                <source src="assets/aphorism-1.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="grain-controls">
+                <button id="prev-grain" class="grain-button">&larr; Попереднє</button>
+                <button id="next-grain" class="grain-button">Наступне &rarr;</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script src="js/grains.js"></script>
+</body>
+</html>
