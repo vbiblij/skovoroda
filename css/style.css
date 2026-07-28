@@ -47,7 +47,7 @@ body::before {
 .page-srodna-pratsia { background-image: url('../assets/background-work.jpg'); } /* Наприклад, побутова сцена, стіл з книгами */
 .page-zerna { background-image: url('../assets/background-nature.jpg'); } /* Наприклад, поле, природа */
 .page-torba { background-image: url('../assets/background-road.jpg'); } /* Наприклад, дорога, що веде в далечінь */
-
+.page-oselia-pamiati { background-image: url('../assets/background-musem.jpg'); } 
 
 /* Header and Navigation */
 #main-header {
