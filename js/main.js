@@ -21,6 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const navHtml = await response.text();
             header.innerHTML = navHtml;
 
+            // Mobile nav toggle
+            const navToggle = header.querySelector('.nav-toggle');
+            if (navToggle) {
+                navToggle.addEventListener('click', () => {
+                    header.classList.toggle('nav-open');
+                });
+            }
+
             // Set active link
             const currentPage = window.location.pathname.split('/').pop();
             const navLinks = header.querySelectorAll('nav a');
