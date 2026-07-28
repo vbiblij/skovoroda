@@ -35,7 +35,7 @@ if (fbLink && fbText && catchPhrase) {
         } else {
             // If we have reached the max dodges, the button gives up. Reset text and position.
             fbLink.style.transform = 'translate(0, 0)';
-            fbText.textContent = 'Facebook';
+            // fbText.textContent = 'Facebook';
             // Now the user can click it successfully.
         }
     };
@@ -64,7 +64,7 @@ if (fbLink && fbText && catchPhrase) {
                 fbText.style.display = 'inline';
                 catchPhrase.style.display = 'none';
                 catchPhrase.style.opacity = '0';
-                fbText.textContent = 'Facebook';
+                // fbText.textContent = 'Facebook';
                 attemptCount = 0;
 
             }, 1500); // 1.5-second delay to read the message
