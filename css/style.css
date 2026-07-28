@@ -47,7 +47,8 @@ body::before {
 .page-srodna-pratsia { background-image: url('../assets/background-work.jpg'); } /* Наприклад, побутова сцена, стіл з книгами */
 .page-zerna { background-image: url('../assets/background-nature.jpg'); } /* Наприклад, поле, природа */
 .page-svit-svobody { background-image: url('../assets/background-road.jpg'); } /* Наприклад, поле, природа */
-.page-oselia-pamiati { background-image: url('../assets/background-musem.jpg'); } 
+.page-oselia-pamiati { background-image: url('../assets/background-museum.jpg'); } 
+.page-404 { background-image: url('../assets/background-road.jpg'); } 
 
 /* Header and Navigation */
 #main-header {
@@ -443,5 +444,39 @@ main {
 .accordion-item-hidden.revealed {
     display: block;
     opacity: 1;
+}
+
+/* --- 404 Page Styles --- */
+.page-404 .lost-traveler-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.page-404 .traveler-silhouette {
+    max-width: 150px;
+    opacity: 0.7;
+    filter: drop-shadow(0 0 15px var(--clay-transparent));
+    animation: fadeIn 2s ease-in-out;
+}
+
+.page-404 .error-text-container {
+    max-width: 500px;
+}
+
+.page-404 .error-message {
+    font-family: var(--font-accent);
+    font-size: 1.3rem;
+    font-style: italic;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    animation: fadeIn 2.5s ease-in-out;
+}
+
+.page-404 .reflection-button {
+    animation: fadeIn 3s ease-in-out;
 }
 
