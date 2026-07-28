@@ -46,7 +46,7 @@ body::before {
     background-repeat: no-repeat;} /* Наприклад, портрет Сковороди */
 .page-srodna-pratsia { background-image: url('../assets/background-work.jpg'); } /* Наприклад, побутова сцена, стіл з книгами */
 .page-zerna { background-image: url('../assets/background-nature.jpg'); } /* Наприклад, поле, природа */
-.page-torba { background-image: url('../assets/background-road.jpg'); } /* Наприклад, дорога, що веде в далечінь */
+.page-svit-svobody { background-image: url('../assets/background-freedom.jpg'); } /* Наприклад, поле, природа */
 .page-oselia-pamiati { background-image: url('../assets/background-musem.jpg'); } 
 
 /* Header and Navigation */
@@ -354,3 +354,82 @@ main {
     #main-header.nav-open nav a:nth-child(4) { transition-delay: 0.4s; }
     #main-header.nav-open nav a:nth-child(5) { transition-delay: 0.5s; }
 }
+
+/* --- Accordion Styles --- */
+.accordion {
+    width: 100%;
+    max-width: 800px;
+    margin: 2rem auto;
+    text-align: left;
+}
+
+.accordion-item {
+    border-bottom: 1px solid var(--moss);
+    transition: background-color 0.3s ease;
+}
+
+.accordion-item:first-of-type {
+    border-top: 1px solid var(--moss);
+}
+
+.accordion-header {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 1.5rem 1rem;
+    font-family: var(--font-main);
+    font-size: 1.3rem;
+    color: var(--light-text);
+    text-align: left;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.accordion-header::after {
+    content: '+';
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--moss);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.accordion-item.active .accordion-header::after {
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.accordion-item:hover .accordion-header {
+    color: var(--linen);
+}
+.accordion-item:hover .accordion-header::after {
+    color: var(--linen);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.23, 1, 0.32, 1), padding 0.3s ease;
+    padding: 0 1.5rem;
+}
+
+.accordion-content p {
+    padding-bottom: 1.5rem;
+    line-height: 1.7;
+    color: var(--light-text);
+    opacity: 0;
+    transition: opacity 0.5s ease 0.1s;
+}
+
+.accordion-item.active .accordion-content {
+    max-height: 20rem; /* Adjust as needed */
+    padding-top: 0.5rem;
+}
+
+.accordion-item.active .accordion-content p {
+    opacity: 1;
+}
+
