@@ -45,7 +45,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // --- Footer Loader ---
+    const loadFooter = async () => {
+        const footer = document.getElementById('main-footer');
+        if (!footer) return;
+
+        try {
+            const response = await fetch('footer.html');
+            if (!response.ok) throw new Error('Footer not found');
+            const footerHtml = await response.text();
+            footer.innerHTML = footerHtml;
+            
+            // We need to load the script for the footer interaction after the footer is loaded
+            const footerScript = document.createElement('script');
+            footerScript.src = 'js/footer.js';
+            document.body.appendChild(footerScript);
+
+        } catch (error) {
+            console.error('Failed to load footer:', error);
+            footer.innerHTML = '<p style="text-align:center; color: var(--clay);">Could not load footer.</p>';
+        }
+    };
+
     loadNav();
+    loadFooter();
 
     // --- Mirror Page Interaction ---
     const mirror = document.getElementById('mirror');

@@ -480,3 +480,43 @@ main {
     animation: fadeIn 3s ease-in-out;
 }
 
+/* --- Footer Styles --- */
+#main-footer {
+    padding: 2rem;
+    text-align: center;
+}
+
+.footer-container {
+    position: relative;
+    height: 50px; /* Give the container some space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#fb-link {
+    display: inline-block;
+    border: 1px solid var(--moss);
+    color: var(--moss);
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    font-family: var(--font-main);
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), background-color 0.3s ease, color 0.3s ease;
+    position: relative;
+    cursor: pointer;
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
+#fb-link:hover {
+    background-color: var(--moss);
+    color: var(--night-sky);
+}
+
+.catch-phrase {
+    display: none;
+    opacity: 0;
+    font-family: var(--font-accent);
+    font-style: italic;
+    transition: opacity 0.5s ease;
+}
+
