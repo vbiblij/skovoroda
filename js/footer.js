@@ -4,56 +4,53 @@ const fbText = fbLink ? fbLink.querySelector('.fb-text') : null;
 const catchPhrase = fbLink ? fbLink.querySelector('.catch-phrase') : null;
 
 if (fbLink && fbText && catchPhrase) {
-    let hoverCount = 0;
-    const maxDodges = 2; // The button will dodge 2 times before allowing a click on the 3rd attempt.
+    let attemptCount = 0;
+    const maxDodges = 2; // The button will dodge this many times. The next attempt will succeed.
 
     const dodge = (event) => {
-        hoverCount++;
-        
-        if (hoverCount <= maxDodges) {
-            // Prevent click on first attempts
-            event.preventDefault();
+        // Prevent click events from firing immediately on touch devices
+        event.preventDefault();
 
-            // Change text
-            fbText.textContent = 'Світ ловив мене...';
+        // Increment attempt counter
+        attemptCount++;
 
-            // Move the button
-            const parentWidth = fbLink.parentElement.offsetWidth;
-            const linkWidth = fbLink.offsetWidth;
-            const currentPosition = fbLink.getBoundingClientRect().left - fbLink.parentElement.getBoundingClientRect().left;
-
-            // Move left if it's on the right side, and right if it's on the left.
-            let move;
-            if (currentPosition > parentWidth / 2) {
-                move = -100 - Math.random() * 50; // Move left
-            } else {
-                move = 100 + Math.random() * 50; // Move right
-            }
-
-            // Make sure it doesn't go too far off-screen
-            const newPos = currentPosition + move;
-            if (newPos < 0 || newPos > parentWidth - linkWidth) {
-                move *= -1; // Reverse direction if it would go out of bounds
+        // If we haven't reached the max number of dodges yet
+        if (attemptCount <= maxDodges) {
+            // On the first attempt, change the text
+            if (attemptCount === 1) {
+                fbText.textContent = 'Світ ловив мене...';
             }
             
-            fbLink.style.transform = `translateX(${move}px)`;
+            // Calculate a random upward and sideways jump
+            const jumpUp = -150 - Math.random() * 50; // Jump up by 150px to 200px
+            const jumpSide = (Math.random() - 0.5) * 200; // Jump sideways by -100px to 100px
+            
+            fbLink.style.transform = `translate(${jumpSide}px, ${jumpUp}px)`;
+
+            // After a moment, reset the button's position so it can be "chased" again
+            setTimeout(() => {
+                fbLink.style.transform = 'translate(0, 0)';
+            }, 600);
+
         } else {
-            // After enough attempts, stop dodging
-            fbLink.style.transform = 'translateX(0)';
+            // If we have reached the max dodges, the button gives up. Reset text and position.
+            fbLink.style.transform = 'translate(0, 0)';
             fbText.textContent = 'Facebook';
-            // The click listener below will now handle the final interaction
+            // Now the user can click it successfully.
         }
     };
 
     const finalClick = (event) => {
-        if (hoverCount <= maxDodges) {
-            // This case happens if the user manages to click it while it's moving
+        // If the user clicks before the button has given up, prevent the click
+        if (attemptCount <= maxDodges) {
             event.preventDefault();
-            dodge(event); // Trigger another dodge
+            // Optionally, you could trigger another dodge here, but preventing the click is enough
+            // to stop a "lucky" click while it's moving.
         } else {
-            // This is the successful, final click
+            // This is the successful click after the chase
             event.preventDefault(); // Prevent immediate navigation
             
+            // Show the final phrase
             fbText.style.display = 'none';
             catchPhrase.style.display = 'inline';
             catchPhrase.style.opacity = '1';
@@ -63,17 +60,19 @@ if (fbLink && fbText && catchPhrase) {
             setTimeout(() => {
                 window.open(url, '_blank');
 
-                // Reset for next time
+                // --- Reset everything for the next time the page is visited ---
                 fbText.style.display = 'inline';
                 catchPhrase.style.display = 'none';
                 catchPhrase.style.opacity = '0';
                 fbText.textContent = 'Facebook';
-                hoverCount = 0;
+                attemptCount = 0;
 
             }, 1500); // 1.5-second delay to read the message
         }
     };
 
+    // Attach event listeners
     fbLink.addEventListener('mouseover', dodge);
+    fbLink.addEventListener('touchstart', dodge, { passive: false }); // Use passive: false to allow preventDefault
     fbLink.addEventListener('click', finalClick);
 }
