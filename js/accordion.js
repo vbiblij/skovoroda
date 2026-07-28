@@ -1,7 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const accordionItems = document.querySelectorAll('.accordion-item');
+    // Select only the non-hidden items to attach listeners
+    const accordionItems = document.querySelectorAll('.accordion-item:not(.accordion-item-hidden)');
+    const hiddenItem = document.querySelector('.accordion-item-hidden');
+    const openedItems = new Set();
+    const totalItemsToOpen = 5;
 
-    accordionItems.forEach(item => {
+    if (!accordionItems.length || !hiddenItem) {
+        return; // Exit if the required elements aren't on the page
+    }
+
+    accordionItems.forEach((item, index) => {
         const header = item.querySelector('.accordion-header');
 
         header.addEventListener('click', () => {
@@ -14,6 +22,16 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Toggle the active state of the clicked item
             item.classList.toggle('active');
+
+            // Track opened items
+            if (item.classList.contains('active')) {
+                openedItems.add(index);
+            }
+
+            // Check if all have been opened
+            if (openedItems.size === totalItemsToOpen) {
+                hiddenItem.classList.add('revealed');
+            }
         });
     });
 });
