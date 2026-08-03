@@ -520,3 +520,99 @@ main {
     transition: opacity 0.5s ease;
 }
 
+/* --- Grains Slider Styles --- */
+.grains-container {
+    max-width: 800px;
+    width: 90%;
+    padding: 2rem;
+    background-color: rgba(28, 37, 34, 0.75); /* Semi-transparent night-sky */
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+body.page-zerna {
+    transition: background-image 0.5s ease-in-out;
+}
+
+.century-toggle {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    border: 1px solid var(--moss);
+    border-radius: 25px;
+    overflow: hidden;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.century-button {
+    flex-grow: 1;
+    background-color: transparent;
+    border: none;
+    color: var(--moss);
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.century-button:hover {
+    color: var(--light-text);
+}
+
+.century-button.active {
+    background-color: var(--moss);
+    color: var(--night-sky);
+    font-weight: bold;
+}
+
+.grain-content {
+    margin-bottom: 2rem;
+    min-height: 150px; /* Adjust as needed */
+}
+
+.grain-title {
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: var(--light-text);
+    transition: opacity 0.3s ease-in-out;
+}
+
+.grain-quote {
+    font-family: var(--font-accent);
+    font-size: 1.1rem;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--light-text);
+    transition: opacity 0.3s ease-in-out;
+}
+
+#grain-audio {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.grain-controls {
+    display: flex;
+    justify-content: space-between;
+}
+
+.grain-button {
+    background-color: transparent;
+    border: 1px solid var(--moss);
+    color: var(--moss);
+    padding: 0.8rem 1.5rem;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.grain-button:hover {
+    background-color: var(--moss);
+    color: var(--night-sky);
+}
+
