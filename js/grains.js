@@ -77,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Fade in
             grainTitle.style.opacity = 1;
             grainDescription.style.opacity = 1;
+            window.scrollTo(0, 0);
         }, 300); // Should match CSS transition duration
 
         if (audioSource.src !== grainData.audio) {
