@@ -576,7 +576,7 @@ body.page-zerna {
 .grain-title {
     font-size: 2rem;
     font-weight: 400;
-    margin-bottom: 1rem;
+    margin: 2rem 0;
     color: var(--light-text);
     transition: opacity 0.3s ease-in-out;
 }
