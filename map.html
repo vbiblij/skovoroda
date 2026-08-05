@@ -17,9 +17,32 @@
             height: 100%;
             background-color: #f5f5f5;
         }
-        /* Апаратне прискорення для гладкої анімації 10k+ кластерів */
-        .leaflet-marker-icon, .leaflet-marker-shadow, .leaflet-cluster-anim {
-            will-change: transform, opacity;
+
+        .route-marker-icon {
+            background-color: #1e70bf;
+            border: 2px solid white;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            width: 32px;
+            height: 32px;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.35);
+        }
+
+        .route-marker-icon::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 8px solid #1e70bf;
         }
     </style>
 </head>
@@ -105,7 +128,15 @@
                 },
                 createMarker: (i, waypoint) => {
                     const point = skovorodaPoints[i];
-                    return L.marker(waypoint.latLng).bindPopup(
+                    return L.marker(waypoint.latLng, {
+                        icon: L.divIcon({
+                            className: 'route-marker-icon',
+                            html: `<div>${i + 1}</div>`,
+                            iconSize: [32, 32],
+                            iconAnchor: [16, 32],
+                            popupAnchor: [0, -34]
+                        })
+                    }).bindPopup(
                         `<strong>${point.name}</strong><br>${point.year}<br>${point.context}`
                     );
                 }
