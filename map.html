@@ -170,7 +170,7 @@
                 createMarker: (i, waypoint) => {
                     const point = skovorodaPoints[i];
                     const imgHtml = point.image ? `<a href="${point.imagePage}" target="_blank" rel="noopener noreferrer"><img src="${point.image}" class="popup-image" alt="${point.name}"></a>` : '';
-                    const pageLink = point.imagePage ? `<div><a href="${point.imagePage}" target="_blank" rel="noopener noreferrer">Джерело фото</a></div>` : '';
+                    const pageLink = point.imagePage ? `<div><a href="${point.imagePage}" target="_blank" rel="noopener noreferrer">${point.imagePage}</a></div>` : '';
                     const worksHtml = point.works && point.works.length > 0 ? `<div style="margin-top:0.6rem"><strong>Твори в цьому місці:</strong><ul style="margin:0.4rem 0 0 1rem;padding:0;list-style-type:disc;line-height:1.4">${point.works.map(work => `<li>${work}</li>`).join('')}</ul></div>` : '';
                     const popupHtml = `<strong>${point.name}</strong><br><em>${point.year}</em><br>${point.context}${worksHtml}${imgHtml}${pageLink}`;
                     return L.marker(waypoint.latLng, {
