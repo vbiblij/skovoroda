@@ -150,7 +150,8 @@
                 createMarker: (i, waypoint) => {
                     const point = skovorodaPoints[i];
                     const imgHtml = point.image ? `<a href="${point.imagePage}" target="_blank" rel="noopener noreferrer"><img src="${point.image}" class="popup-image" alt="${point.name}"></a>` : '';
-                    const popupHtml = `<strong>${point.name}</strong><br>${point.year}<br>${point.context}${imgHtml}`;
+                    const pageLink = point.imagePage ? `<div><a href="${point.imagePage}" target="_blank" rel="noopener noreferrer">Джерело фото</a></div>` : '';
+                    const popupHtml = `<strong>${point.name}</strong><br>${point.year}<br>${point.context}${imgHtml}${pageLink}`;
                     return L.marker(waypoint.latLng, {
                         icon: L.divIcon({
                             className: 'route-marker-icon',
