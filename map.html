@@ -45,6 +45,15 @@
             border-right: 6px solid transparent;
             border-top: 8px solid #1e70bf;
         }
+        .popup-image{
+            display:block;
+            max-width:220px;
+            width:100%;
+            height:auto;
+            margin-top:6px;
+            border-radius:4px;
+            box-shadow:0 2px 6px rgba(0,0,0,0.2);
+        }
     </style>
 </head>
 <body>
@@ -65,31 +74,41 @@
                     name: "Харків (Харківський колегіум)",
                     coords: [49.9935, 36.2304],
                     year: "1759 – 1769 роки з перервами",
-                    context: "Викладав поетику, синтаксис та грецьку мову. Написав курс лекцій з християнської доброчинності, через прогресивність якого мав конфлікт із єпископом і назавжди залишив викладання."
+                    context: "Викладав поетику, синтаксис та грецьку мову. Написав курс лекцій з християнської доброчинності, через прогресивність якого мав конфлікт із єпископом і назавжди залишив викладання.",
+                    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Kharkov%27s_Collegium_XVIII-XIX.jpg/500px-Kharkov%27s_Collegium_XVIII-XIX.jpg",
+                    imagePage: "https://uk.wikipedia.org/wiki/Харківський_колегіум"
                 },
                 {
                     name: "с. Бабаї",
                     coords: [49.8972, 36.1912],
                     year: "1770-ті роки",
-                    context: "Часто зупинявся у свого учня Якова Правицького. Тут у Бабаївському лісі біля криниці філософ створив свої знамениті «Байки Харківські»."
+                    context: "Часто зупинявся у свого учня Якова Правицького. Тут у Бабаївському лісі біля криниці філософ створив свої знамениті «Байки Харківські».",
+                    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Babai_School.JPG/500px-Babai_School.JPG",
+                    imagePage: "https://uk.wikipedia.org/wiki/Бабаї"
                 },
                 {
                     name: "Гусинський монастир (Куп'янщина)",
                     coords: [49.6586, 37.6044],
                     year: "1770 – 1780-ті роки",
-                    context: "Один із улюблених прихистків мислителя. Тут він знаходив абсолютний спокій для усамітнення, релігійних роздумів та написання філософських трактатів."
+                    context: "Один із улюблених прихистків мислителя. Тут він знаходив абсолютний спокій для усамітнення, релігійних роздумів та написання філософських трактатів.",
+                    image: null,
+                    imagePage: "https://uk.wikipedia.org/wiki/Гусинський_монастир"
                 },
                 {
                     name: "Великий Бурлук (маєток Донець-Захаржевських)",
                     coords: [50.0461, 37.3871],
                     year: "1780 – 1790-ті роки",
-                    context: "Гостював у маєтку відомого козацько-старшинського роду. Користувався їхньою величезною бібліотекою. За переказами, саме тут зберігався оригінал «Велесової книги»."
+                    context: "Гостював у маєтку відомого козацько-старшинського роду. Користувався їхньою величезною бібліотекою. За переказами, саме тут зберігався оригінал «Велесової книги».",
+                    image: null,
+                    imagePage: "https://uk.wikipedia.org/wiki/Великий_Бурлук"
                 },
                 {
                     name: "с. Сковородинівка (Пан-Іванівка)",
                     coords: [50.1575, 35.7675],
                     year: "1790 – 1794 роки",
-                    context: "Остання точка земних мандрів. Жив у маєтку Андрія Ковалинського. Помер 9 листопада 1794 року. Заповів викарбувати на могилі: «Світ ловив мене, та не спіймав»."
+                    context: "Остання точка земних мандрів. Жив у маєтку Андрія Ковалинського. Помер 9 листопада 1794 року. Заповів викарбувати на могилі: «Світ ловив мене, та не спіймав».",
+                    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/%D0%90%D0%BB%D0%B5%D1%97_%D0%BF%D0%B0%D1%80%D0%BA%D1%83._%D0%A1%D0%BA%D0%BE%D0%B2%D0%BE%D1%80%D0%BE%D0%B4%D0%B8%D0%BD%D1%96%D0%B2%D0%BA%D0%B0._PG/500px-%D0%90%D0%BB%D0%B5%D1%97_%D0%BF%D0%B0%D1%80%D0%BA%D1%83._%D0%A1%D0%BA%D0%BE%D0%B2%D0%BE%D1%80%D0%BE%D0%B4%D0%B8%D0%BD%D1%96%D0%B2%D0%BA%D0%B0._PG.jpg",
+                    imagePage: "https://uk.wikipedia.org/wiki/Сковородинівка"
                 }
             ];
 
@@ -130,6 +149,8 @@
                 },
                 createMarker: (i, waypoint) => {
                     const point = skovorodaPoints[i];
+                    const imgHtml = point.image ? `<a href="${point.imagePage}" target="_blank" rel="noopener noreferrer"><img src="${point.image}" class="popup-image" alt="${point.name}"></a>` : '';
+                    const popupHtml = `<strong>${point.name}</strong><br>${point.year}<br>${point.context}${imgHtml}`;
                     return L.marker(waypoint.latLng, {
                         icon: L.divIcon({
                             className: 'route-marker-icon',
@@ -138,9 +159,7 @@
                             iconAnchor: [16, 32],
                             popupAnchor: [0, -34]
                         })
-                    }).bindPopup(
-                        `<strong>${point.name}</strong><br>${point.year}<br>${point.context}`
-                    );
+                    }).bindPopup(popupHtml);
                 }
             }).addTo(map);
         })();
