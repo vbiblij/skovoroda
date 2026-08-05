@@ -75,6 +75,10 @@
                     coords: [49.9935, 36.2304],
                     year: "1759 – 1769 роки з перервами",
                     context: "Викладав поетику, синтаксис та грецьку мову. Написав курс лекцій з християнської доброчинності, через прогресивність якого мав конфлікт із єпископом і назавжди залишив викладання.",
+                    works: [
+                        "курс лекцій з християнської доброчинності",
+                        "ранні поетичні та філософські нотатки, що стали основою «Байок Харківських»"
+                    ],
                     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Kharkov%27s_Collegium_XVIII-XIX.jpg/500px-Kharkov%27s_Collegium_XVIII-XIX.jpg",
                     imagePage: "https://uk.wikipedia.org/wiki/Харківський_колегіум"
                 },
@@ -83,6 +87,10 @@
                     coords: [49.8972, 36.1912],
                     year: "1770-ті роки",
                     context: "Часто зупинявся у свого учня Якова Правицького. Тут у Бабаївському лісі біля криниці філософ створив свої знамениті «Байки Харківські».",
+                    works: [
+                        "«Байки Харківські»",
+                        "листи до Панаса Панкова"
+                    ],
                     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Babai_School.JPG/500px-Babai_School.JPG",
                     imagePage: "https://uk.wikipedia.org/wiki/Бабаї"
                 },
@@ -91,6 +99,10 @@
                     coords: [49.6586, 37.6044],
                     year: "1770 – 1780-ті роки",
                     context: "Один із улюблених прихистків мислителя. Тут він знаходив абсолютний спокій для усамітнення, релігійних роздумів та написання філософських трактатів.",
+                    works: [
+                        "філософські трактати та діалоги",
+                        "релігійні роздуми й коментарі до біблійних текстів"
+                    ],
                     image: null,
                     imagePage: "https://uk.wikipedia.org/wiki/Гусинський_монастир"
                 },
@@ -99,6 +111,10 @@
                     coords: [50.0461, 37.3871],
                     year: "1780 – 1790-ті роки",
                     context: "Гостював у маєтку відомого козацько-старшинського роду. Користувався їхньою величезною бібліотекою. За переказами, саме тут зберігався оригінал «Велесової книги».",
+                    works: [
+                        "філософські роздуми та трактати",
+                        "тексти про мораль, природу й самопізнання"
+                    ],
                     image: null,
                     imagePage: "https://uk.wikipedia.org/wiki/Великий_Бурлук"
                 },
@@ -107,6 +123,10 @@
                     coords: [50.1575, 35.7675],
                     year: "1790 – 1794 роки",
                     context: "Остання точка земних мандрів. Жив у маєтку Андрія Ковалинського. Помер 9 листопада 1794 року. Заповів викарбувати на могилі: «Світ ловив мене, та не спіймав».",
+                    works: [
+                        "останній цикл листів і філософських нотаток",
+                        "заключні байки і вірші останнього періоду життя"
+                    ],
                     image: null,
                     imagePage: "https://uk.wikipedia.org/wiki/Сковородинівка"
                 }
@@ -150,8 +170,9 @@
                 createMarker: (i, waypoint) => {
                     const point = skovorodaPoints[i];
                     const imgHtml = point.image ? `<a href="${point.imagePage}" target="_blank" rel="noopener noreferrer"><img src="${point.image}" class="popup-image" alt="${point.name}"></a>` : '';
-                    const pageLink = point.imagePage ? `<div><a href="${point.imagePage}" target="_blank" rel="noopener noreferrer">${point.imagePage}</a></div>` : '';
-                    const popupHtml = `<strong>${point.name}</strong><br>${point.year}<br>${point.context}${imgHtml}${pageLink}`;
+                    const pageLink = point.imagePage ? `<div><a href="${point.imagePage}" target="_blank" rel="noopener noreferrer">Джерело фото</a></div>` : '';
+                    const worksHtml = point.works && point.works.length > 0 ? `<div style="margin-top:0.6rem"><strong>Твори в цьому місці:</strong><ul style="margin:0.4rem 0 0 1rem;padding:0;list-style-type:disc;line-height:1.4">${point.works.map(work => `<li>${work}</li>`).join('')}</ul></div>` : '';
+                    const popupHtml = `<strong>${point.name}</strong><br><em>${point.year}</em><br>${point.context}${worksHtml}${imgHtml}${pageLink}`;
                     return L.marker(waypoint.latLng, {
                         icon: L.divIcon({
                             className: 'route-marker-icon',
