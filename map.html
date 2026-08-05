@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Слобожанські стежки Григорія Сковороди</title>
+    
+    <!-- Підключення стилів Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com" 
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f7f5f0;
+        }
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        /* Обов'язково задаємо висоту контейнера карти */
+        #map {
+            height: 600px;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            border: 2px solid #dcd6cd;
+        }
+        /* Стилізація попапів */
+        .leaflet-popup-content h3 {
+            margin: 0 0 5px 0;
+            color: #8e44ad;
+            font-size: 16px;
+        }
+        .leaflet-popup-content .year {
+            font-weight: bold;
+            color: #e67e22;
+            margin-bottom: 8px;
+        }
+        .leaflet-popup-content p {
+            margin: 0;
+            font-size: 13px;
+            line-height: 1.4;
+            color: #34495e;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>📍 Слобожанські стежки Григорія Сковороди (1760–1794)</h2>
+    
+    <!-- Контейнер для карти -->
+    <div id="map"></div>
+
+    <!-- Підключення JS бібліотеки Leaflet -->
+    <script src="https://unpkg.com" 
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script>
+        // 1. Ініціалізація карти (центруємо на Харківську область та задаємо масштаб)
+        const map = L.map('map').setView([49.85, 36.15], 9);
+
+        // 2. Підключення базового шару OpenStreetMap (тайли)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // 3. Масив із достовірними слобожанськими точками подорожей Сковороди
+        const skovorodaPoints = [
+            {
+                name: "Харків (Харківський колегіум)",
+                coords: [49.9935, 36.2304],
+                year: "1759 – 1769 роки з перервами",
+                context: "Викладав поетику, синтаксис та грецьку мову. Написав курс лекцій з християнської доброчинності, через прогресивність якого мав конфлікт із єпископом і назавжди залишив викладання."
+            },
+            {
+                name: "с. Бабаї",
+                coords: [49.8972, 36.1912],
+                year: "1770-ті роки",
+                context: "Часто зупинявся у свого учня Якова Правицького. Тут у Бабаївському лісі біля криниці філософ створив свої знамениті «Байки Харківські»."
+            },
+            {
+                name: "Гусинський монастир (Куп'янщина)",
+                coords: [49.6586, 37.6044], // Приблизні координати історичного розташування
+                year: "1770 – 1780-ті роки",
+                context: "Один із улюблених прихистків мислителя. Тут він знаходив абсолютний спокій для усамітнення, релігійних роздумів та написання філософських трактатів."
+            },
+            {
+                name: "Великий Бурлук (маєток Донець-Захаржевських)",
+                coords: [50.0461, 37.3871],
+                year: "1780 – 1790-ті роки",
+                context: "Гостював у маєтку відомого козацько-старшинського роду. Користувався їхньою величезною бібліотекою. За переказами, саме тут зберігався оригінал «Велесової книги»."
+            },
+            {
+                name: "с. Сковородинівка (Пан-Іванівка)",
+                coords: [50.1575, 35.7675],
+                year: "1790 – 1794 роки",
+                context: "Остання точка земних мандрів. Жив у маєтку Андрія Ковалинського. Помер 9 листопада 1794 року. Заповів викарбувати на могилі: «Світ ловив мене, та не спіймав»."
+            }
+        ];
+
+        // 4. Створення ліній для відображення умовного маршруту між точками
+        const routeCoordinates = skovorodaPoints.map(point => point.coords);
+        
+        const routeLine = L.polyline(routeCoordinates, {
+            color: '#7f8c8d',     // Колір лінії
+            weight: 3,            // Товщина
+            opacity: 0.7,         // Прозорість
+            dashArray: '10, 10',  // Пунктирний стиль, що символізує постійні мандри
+            lineJoin: 'round'
+        }).addTo(map);
+
+        // 5. Додавання маркерів та попапів на карту
+        skovorodaPoints.forEach(function(point) {
+            // Формуємо вміст попапу за допомогою HTML-шаблону
+            const popupContent = `
+                <h3>${point.name}</h3>
+                <div class="year">📅 ${point.year}</div>
+                <p>${point.context}</p>
+            `;
+
+            // Створюємо маркер і прив'язуємо до нього попап
+            L.marker(point.coords)
+                .addTo(map)
+                .bindPopup(popupContent);
+        });
+
+        // 6. Автоматичне масштабування карти під межі всіх маркерів
+        const bounds = L.latLngBounds(routeCoordinates);
+        map.fitBounds(bounds, { padding: [50, 50] });
+    </script>
+</body>
+</html>
