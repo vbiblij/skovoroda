@@ -70,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (cardElement.classList.contains('selected')) {
             cardElement.classList.remove('selected');
             firstSelection = null;
-            showModal('Вибір знято. Оберіть іншу картку.');
             return;
         }
 
@@ -78,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!firstSelection) {
             firstSelection = { element: cardElement, data: cardData };
-            showModal(`Оберіть пару для ${cardData.name}.`);
             return;
         }
 
@@ -125,5 +123,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     updateStats();
-    showModal('Кожна пара карток належить одній байці. Виберіть одну картку, потім другу. Якщо пара правильна — обидві картки зникнуть. Якщо ні — з рахунку відніметься 1 бал.');
 });
