@@ -71,18 +71,12 @@ body::before {
 
 .scoreboard {
     display: grid;
-    grid-template-columns: repeat(3, minmax(100px, 1fr));
+    grid-template-columns: repeat(1, minmax(120px, 1fr));
     gap: 1rem;
     width: 100%;
-    max-width: 700px;
+    max-width: 260px;
 }
 
-.score-card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 1rem;
-    padding: 1rem 1.2rem;
-    text-align: center;
 }
 
 .score-card strong {
@@ -113,17 +107,17 @@ body::before {
 
 .game-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(120px, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 1rem;
     width: 100%;
     margin-bottom: 1.5rem;
 }
 
-..card {
+.card {
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 1rem;
-    min-height: 100px;
+    aspect-ratio: 1 / 1;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -132,7 +126,7 @@ body::before {
     text-align: center;
     color: var(--light-text);
     cursor: pointer;
-    transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+    transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
     position: relative;
     user-select: none;
 }
@@ -152,18 +146,16 @@ body::before {
     z-index: 1;
 }
 
-.card.selected,
-.card.matched {
-    background-color: rgba(166, 123, 91, 0.2);
-    border-color: var(--linen);
-}
-
 .card.selected {
+    background-color: rgba(100, 190, 120, 0.35);
+    border-color: rgba(114, 214, 131, 0.8);
     transform: translateY(-4px);
 }
 
 .card.matched {
-    background-color: rgba(148, 153, 140, 0.2);
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.95);
 }
 
 .card-text {
