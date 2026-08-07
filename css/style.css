@@ -59,7 +59,7 @@ body::before {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
+    padding: 3px;
 }
 
 .game-area {
@@ -216,15 +216,10 @@ body::before {
     opacity: 0.6;
 }
 
-@media (max-width: 900px) {
-    .card {
-        min-height: 90px;
-    }
-}
 
 @media (max-width: 700px) {
     .game-grid {
-        grid-template-columns: repeat(2, minmax(120px, 1fr));
+        font-size: 0.85rem;
     }
 }
 
