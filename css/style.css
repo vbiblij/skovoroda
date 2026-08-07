@@ -50,6 +50,149 @@ body::before {
 .page-oselia-pamiati { background-image: url('../assets/background-museum.jpg'); } 
 .page-404 { background-image: url('../assets/background-road.jpg'); } 
 
+/* Page-specific backgrounds */
+.page-fable-game { background-image: none; }
+
+/* Fable match game styles */
+.page-fable-game main {
+    padding: 7rem 1.5rem 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.game-status {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.scoreboard {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(100px, 1fr));
+    gap: 1rem;
+    width: 100%;
+    max-width: 700px;
+}
+
+.score-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 1rem;
+    padding: 1rem 1.2rem;
+    text-align: center;
+}
+
+.score-card strong {
+    display: block;
+    font-size: 1.3rem;
+    margin-bottom: 0.25rem;
+    color: var(--linen);
+}
+
+.score-card span {
+    display: block;
+    color: var(--light-text);
+    font-size: 0.95rem;
+}
+
+.game-message {
+    flex: 1 1 240px;
+    min-width: 240px;
+    padding: 1rem 1.2rem;
+    border-radius: 1rem;
+    background: rgba(166, 123, 91, 0.1);
+    border: 1px solid rgba(166, 123, 91, 0.25);
+    color: var(--light-text);
+    font-size: 1rem;
+    line-height: 1.5;
+    min-height: 3.2rem;
+}
+
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(120px, 1fr));
+    gap: 1rem;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+..card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 1rem;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    text-align: center;
+    color: var(--light-text);
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+    position: relative;
+    user-select: none;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(0,0,0,0.14));
+    border-radius: 1rem;
+    pointer-events: none;
+}
+
+.card-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    z-index: 1;
+}
+
+.card.selected,
+.card.matched {
+    background-color: rgba(166, 123, 91, 0.2);
+    border-color: var(--linen);
+}
+
+.card.selected {
+    transform: translateY(-4px);
+}
+
+.card.matched {
+    background-color: rgba(148, 153, 140, 0.2);
+}
+
+.card-text {
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-accent);
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: var(--light-text);
+    word-break: break-word;
+}
+
+.card.disabled {
+    cursor: default;
+    opacity: 0.6;
+}
+
+@media (max-width: 900px) {
+    .card {
+        min-height: 90px;
+    }
+}
+
+@media (max-width: 700px) {
+    .game-grid {
+        grid-template-columns: repeat(2, minmax(120px, 1fr));
+    }
+}
+
 /* Header and Navigation */
 #main-header {
     width: 100%;
