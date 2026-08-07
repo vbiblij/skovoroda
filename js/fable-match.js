@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const pairs = [
         { pairLabel: 'Ворон і Чиж', cards: [{ name: 'Ворон', icon: '🦅' }, { name: 'Чиж', icon: '🐦' }] },
-        { pairLabel: 'Чиж і Щиглик', cards: [{ name: 'Чиж', icon: '🐦' }, { name: 'Щиглик', icon: '🐤' }] },
         { pairLabel: 'Орел і Сорока', cards: [{ name: 'Орел', icon: '🦅' }, { name: 'Сорока', icon: '🐦' }] },
         { pairLabel: 'Мурашка і Свиня', cards: [{ name: 'Мурашка', icon: '🐜' }, { name: 'Свиня', icon: '🐖' }] },
         { pairLabel: 'Орел і Черепаха', cards: [{ name: 'Орел', icon: '🦅' }, { name: 'Черепаха', icon: '🐢' }] },
@@ -10,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
         { pairLabel: 'Собака та Кобила', cards: [{ name: 'Собака', icon: '🐕' }, { name: 'Кобила', icon: '🐎' }] },
         { pairLabel: 'Верблюд і Олень', cards: [{ name: 'Верблюд', icon: '🐫' }, { name: 'Олень', icon: '🦌' }] },
         { pairLabel: 'Зозуля та Дрізд', cards: [{ name: 'Зозуля', icon: '🐦' }, { name: 'Дрізд', icon: '🐦' }] },
-        { pairLabel: 'Собака і Вовк', cards: [{ name: 'Собака', icon: '🐕' }, { name: 'Вовк', icon: '🐺' }] },
         { pairLabel: 'Кріт і Лінкс', cards: [{ name: 'Кріт', icon: '🦡' }, { name: 'Лінкс', icon: '🐱' }] },
         { pairLabel: 'Щука і Рак', cards: [{ name: 'Щука', icon: '🐟' }, { name: 'Рак', icon: '🦀' }] },
         { pairLabel: 'Бджола та Шершень', cards: [{ name: 'Бджола', icon: '🐝' }, { name: 'Шершень', icon: '🐝' }] },
