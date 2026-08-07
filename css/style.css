@@ -55,18 +55,19 @@ body::before {
 
 /* Fable match game styles */
 .page-fable-game main {
-    padding: 7rem 1.5rem 3rem;
-    max-width: 1100px;
-    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
 }
 
-.game-status {
+.game-area {
+    width: min(100%, 1040px);
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
     gap: 1rem;
-    margin-bottom: 1.5rem;
+    align-items: center;
 }
 
 .scoreboard {
@@ -77,6 +78,12 @@ body::before {
     max-width: 260px;
 }
 
+.score-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 1rem;
+    padding: 1rem 1.2rem;
+    text-align: center;
 }
 
 .score-card strong {
@@ -92,25 +99,15 @@ body::before {
     font-size: 0.95rem;
 }
 
-.game-message {
-    flex: 1 1 240px;
-    min-width: 240px;
-    padding: 1rem 1.2rem;
-    border-radius: 1rem;
-    background: rgba(166, 123, 91, 0.1);
-    border: 1px solid rgba(166, 123, 91, 0.25);
-    color: var(--light-text);
-    font-size: 1rem;
-    line-height: 1.5;
-    min-height: 3.2rem;
-}
-
 .game-grid {
+    --card-size: min((100vw - 2.5rem) / 4, (100vh - 10rem) / 8);
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1rem;
-    width: 100%;
-    margin-bottom: 1.5rem;
+    grid-template-columns: repeat(4, var(--card-size));
+    grid-auto-rows: var(--card-size);
+    gap: 0.75rem;
+    justify-content: center;
+    width: min(calc(var(--card-size) * 4 + 2.25rem), 100%);
+    margin: 0 auto;
 }
 
 .card {
@@ -166,6 +163,47 @@ body::before {
     line-height: 1.4;
     color: var(--light-text);
     word-break: break-word;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    z-index: 1000;
+}
+
+.modal-box {
+    width: min(100%, 420px);
+    background: rgba(28, 37, 34, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.modal-box p {
+    color: var(--light-text);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.modal-button {
+    background: var(--linen);
+    color: var(--night-sky);
+    border: none;
+    border-radius: 999px;
+    padding: 0.9rem 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
 }
 
 .card.disabled {

@@ -38,8 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const board = shuffle(cards);
     const gameGrid = document.getElementById('game-grid');
-    const message = document.getElementById('game-message');
     const scoreValue = document.getElementById('score-value');
+    const modalOverlay = document.getElementById('modal-overlay');
+    const modalText = document.getElementById('modal-text');
+    const modalClose = document.getElementById('modal-close');
 
     let firstSelection = null;
     let score = 0;
@@ -48,9 +50,16 @@ document.addEventListener('DOMContentLoaded', () => {
         scoreValue.textContent = score;
     };
 
-    const setMessage = text => {
-        message.textContent = text;
+    const showModal = text => {
+        modalText.textContent = text;
+        modalOverlay.classList.remove('hidden');
     };
+
+    const hideModal = () => {
+        modalOverlay.classList.add('hidden');
+    };
+
+    modalClose.addEventListener('click', hideModal);
 
     const resetSelection = () => {
         firstSelection = null;
@@ -61,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (cardElement.classList.contains('selected')) {
             cardElement.classList.remove('selected');
             firstSelection = null;
-            setMessage('Вибір знято. Оберіть іншу картку.');
+            showModal('Вибір знято. Оберіть іншу картку.');
             return;
         }
 
@@ -69,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!firstSelection) {
             firstSelection = { element: cardElement, data: cardData };
-            setMessage(`Оберіть пару для ${cardData.name}.`);
+            showModal(`Оберіть пару для ${cardData.name}.`);
             return;
         }
 
@@ -81,16 +90,18 @@ document.addEventListener('DOMContentLoaded', () => {
             secondSelection.element.classList.add('matched');
             firstSelection.element.classList.remove('selected');
             secondSelection.element.classList.remove('selected');
-            setMessage(`Байка: ${cardData.pairLabel}.`);
             updateStats();
-            firstSelection = null;
+            resetSelection();
+            showModal(`Байка: ${cardData.pairLabel}.`);
             return;
         }
 
-        setMessage('Нема такої байки.');
+        score = Math.max(0, score - 1);
+        updateStats();
         firstSelection.element.classList.remove('selected');
         secondSelection.element.classList.remove('selected');
-        firstSelection = null;
+        resetSelection();
+        showModal('Нема такої байки.');
     };
 
     board.forEach((cardData, index) => {
@@ -114,4 +125,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     updateStats();
+    showModal('Кожна пара карток належить одній байці. Виберіть одну картку, потім другу. Якщо пара правильна — обидві картки зникнуть. Якщо ні — з рахунку відніметься 1 бал.');
 });
