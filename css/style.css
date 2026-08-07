@@ -218,8 +218,8 @@ body::before {
 
 
 @media (max-width: 700px) {
-    .game-grid {
-        font-size: 0.85rem;
+    .card-text {
+        font-size: 0.7rem;
     }
 }
 
